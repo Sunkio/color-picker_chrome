@@ -18,12 +18,17 @@ chrome.runtime.onMessage.addListener( (message, sender) => {
           else {
             chrome.storage.local.set({ "color_hex_code": [result.sRGBHex] })
           }
-
         })
       }).catch(e => {
         console.log(e)
       })
-
+      chrome.notifications.create({
+        type: "basic",
+        title: "Hex code copied and added to list",
+        message: "Hex code is copied to clipboard and added to the list!",
+        iconUrl: "assets/icon128.png"
+      });
     }, 500);
+
   }
 })

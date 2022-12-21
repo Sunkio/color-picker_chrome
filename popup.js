@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             message: "Hex code is copied to clipboard!",
             iconUrl: "assets/icon128.png"
           });
+
         })
 
         resultList.appendChild(liElem)

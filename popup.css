@@ -25,6 +25,7 @@ html {
     text-align: center;
     width: max-content;
     min-width: 150px;
+    max-width: 350px;
     min-height: 100%;
     box-sizing: border-box;
 }
@@ -36,7 +37,7 @@ body {
 
 #main {
     min-width: 150px;
-    padding: 1vw 6vw 1vw 1vw;
+    padding: 10px;
 }
 
 
@@ -63,13 +64,12 @@ h1 {
 }
 
 #picker-btn {
-    margin-bottom: 3%;
+    margin-bottom: 4%;
 }
 
 #clearButton {
-    margin-top: 3%;
+    margin-top: 4%;
 }
-
 
 #result {
     list-style: none;
@@ -82,7 +82,7 @@ h1 {
 }
 
 #result > li {
-
+    text-align: center;
     font-size: 1em;
     width: 100%;
     text-align: center;
