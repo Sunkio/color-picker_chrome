@@ -18,8 +18,7 @@
   ],
   "permissions": [
     "tabs",
-    "storage",
-    "notifications"
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>"

@@ -109,29 +109,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chrome.storage.local.get("color_hex_code", (resp) => {
 
+
     if (resp.color_hex_code && resp.color_hex_code.length > 0) {
 
       resp.color_hex_code.forEach(hexCode => {
-
+        //navigator.clipboard.writeText(hexCode);
         const liElem = document.createElement("li")
-        liElem.innerText = hexCode
-        liElem.style.border = "solid 5px " + hexCode
+        liElem.innerText = hexCode;
+        liElem.style.border = "solid 5px " + hexCode;
 
         liElem.addEventListener("click", () => {
           navigator.clipboard.writeText(hexCode);
-          chrome.notifications.create({
+          chrome.action.setBadgeText({text: '\u2713'});
+          setTimeout(function(){
+            chrome.action.setBadgeText({text: " "});
+          }, 1500);
+
+          chrome.action.setBadgeBackgroundColor({color: hexCode});
+          /*chrome.notifications.create({
             type: "basic",
             title: "Hex code copied",
             message: "Hex code is copied to clipboard!",
             iconUrl: "assets/icon128.png"
-          });
-
+          });*/
         })
 
         resultList.appendChild(liElem)
-
       })
-
+/*
+      chrome.storage.local.onChanged(result => {
+        if (result.color_hex_code.newValue) {
+          chrome.action.setBadgeText({text: 'set'});
+        }
+      })
+*/
       const ClearButton = document.createElement("button")
       ClearButton.innerText = "Delete Color History"
       ClearButton.setAttribute("id", "clearButton")
@@ -139,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ClearButton.addEventListener("click", () => {
         chrome.storage.local.remove("color_hex_code")
         window.close()
+        chrome.action.setBadgeText({text: ""});
       })
 
       main.appendChild(ClearButton)

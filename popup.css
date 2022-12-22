@@ -80,7 +80,8 @@ h1 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
 }
-
+/* maybe set margin to aut? or at least play with it. also check padding: maybe the bigger padding-right makes it
+expand to the right when text gets bold*/
 #result > li {
     text-align: center;
     font-size: 1em;

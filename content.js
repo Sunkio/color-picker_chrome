@@ -9,26 +9,26 @@ chrome.runtime.onMessage.addListener( (message, sender) => {
       eyeDropper.open().then(result => {
 
         console.log(result);
-
+        chrome.action.setBadgeText({text: 'set'});
         chrome.storage.local.get("color_hex_code", (resp) => {
 
           if (resp.color_hex_code && resp.color_hex_code.length > 0) {
             chrome.storage.local.set({ "color_hex_code": [...resp.color_hex_code, result.sRGBHex] })
           }
           else {
-            chrome.storage.local.set({ "color_hex_code": [result.sRGBHex] })
+            chrome.storage.local.set({ "color_hex_code": [result.sRGBHex] });
           }
         })
       }).catch(e => {
         console.log(e)
       })
-      chrome.notifications.create({
-        type: "basic",
-        title: "Hex code copied and added to list",
-        message: "Hex code is copied to clipboard and added to the list!",
-        iconUrl: "assets/icon128.png"
-      });
-    }, 500);
 
+
+    }, 500);
   }
 })
+
+
+/*
+
+*/
