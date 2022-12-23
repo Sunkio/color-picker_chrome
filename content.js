@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener( (message, sender) => {
       eyeDropper.open().then(result => {
 
         console.log(result);
-        chrome.action.setBadgeText({text: 'set'});
+
         chrome.storage.local.get("color_hex_code", (resp) => {
 
           if (resp.color_hex_code && resp.color_hex_code.length > 0) {
@@ -23,12 +23,6 @@ chrome.runtime.onMessage.addListener( (message, sender) => {
         console.log(e)
       })
 
-
     }, 500);
   }
 })
-
-
-/*
-
-*/
