@@ -1,3 +1,4 @@
+
 chrome.runtime.onMessage.addListener( (message, sender) => {
 
   if (message.from === "popup" && message.query === "eye_dropper_clicked") {
@@ -19,10 +20,31 @@ chrome.runtime.onMessage.addListener( (message, sender) => {
             chrome.storage.local.set({ "color_hex_code": [result.sRGBHex] });
           }
         })
+
+        navigator.clipboard.writeText(result.sRGBHex);
       }).catch(e => {
         console.log(e)
       })
 
+
     }, 500);
   }
+
 })
+
+
+/*
+*  async function sendToClipboard(result.sRGBHex) {
+    const newPick = await navigator.permissions.query({ name: "clipboard-write" });
+    if (newPick.state == "granted" || newPick.state == "prompt") {
+      try {
+        await navigator.clipboard.writeText(result.sRGBHex);
+      } catch (e) {
+        // Failed to write to the clipboard.
+        document.body.innerHTML = e;
+      }
+    }
+  }
+  sendToClipboard(result.sRGBHex);
+
+* */

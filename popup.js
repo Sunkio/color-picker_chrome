@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttonCont = document.getElementById("picker-btn-cont");
   const resultList = document.getElementById("result");
 
-
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
     const tab = tabs[0]
 
@@ -41,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (resp.color_hex_code && resp.color_hex_code.length > 0) {
 
       resp.color_hex_code.forEach(hexCode => {
+
         const liElem = document.createElement("li")
         liElem.innerText = hexCode;
         liElem.style.border = "solid 5px " + hexCode;
@@ -62,7 +62,19 @@ document.addEventListener("DOMContentLoaded", () => {
         })
 
         resultList.appendChild(liElem)
+
       })
+// close, captures last color but only after popup opens again
+      navigator.clipboard.writeText(resp.color_hex_code[resp.color_hex_code.length - 1]);
+      //chrome.action.setBadgeText({text: '\test'});
+      chrome.action.setBadgeText({text: '\u2713'});
+      setTimeout(function(){
+        chrome.action.setBadgeText({text: " "});
+      }, 1500);
+
+      chrome.action.setBadgeBackgroundColor({color: resp.color_hex_code[resp.color_hex_code.length - 1]});
+
+      // chrome.action.enable();
 
       const ClearButton = document.createElement("button")
       ClearButton.innerText = "Delete Color History"
@@ -76,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       main.appendChild(ClearButton)
     }
-
   })
 
 })
