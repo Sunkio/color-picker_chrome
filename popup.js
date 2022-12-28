@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const tab = tabs[0]
 
     if (tab.url === undefined || tab.url.indexOf('chrome') === 0) {
-      buttonCont.innerHTML = '<span class="highlight">Lean Color Picker</span> can\'t access this <i>special Chrome page</i>. Please try a different web page.';
+      buttonCont.innerHTML = '<p><span class="highlight">Lean Color Picker</span> can\'t access this <i>special Chrome page</i>. Please try a different web page.</p>';
     }
     else if (tab.url.indexOf('file') === 0) {
-      buttonCont.innerHTML = '<span class="highlight">Lean Color Picker</span> can\'t access <i>local pages</i>. Please try a different web page.';
+      buttonCont.innerHTML = '<p><span class="highlight">Lean Color Picker</span> can\'t access <i>local pages</i>. Please try a different web page.</p>';
 
     } else {
       const button = document.createElement("button")

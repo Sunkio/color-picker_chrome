@@ -11,6 +11,9 @@ chrome.runtime.onMessage.addListener( (message, sender) => {
 
         console.log(result);
 
+        // this doesn't work:
+        chrome.action.setBadgeBackgroundColor({color: result.sRGBA});
+
         chrome.storage.local.get("color_hex_code", (resp) => {
 
           if (resp.color_hex_code && resp.color_hex_code.length > 0) {
@@ -20,13 +23,13 @@ chrome.runtime.onMessage.addListener( (message, sender) => {
             chrome.storage.local.set({ "color_hex_code": [result.sRGBHex] });
           }
         })
-
+        // this works, picks the color immediately:
         navigator.clipboard.writeText(result.sRGBHex);
+        // this doesn't work:
+        chrome.action.setBadgeText({text: '\u2713'});
       }).catch(e => {
         console.log(e)
       })
-
-
     }, 500);
   }
 
